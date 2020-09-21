@@ -1,0 +1,5 @@
+{
+    "require": {
+        "activecollab/activecollab-feather-sdk": "^3.0"
+    }    
+}
