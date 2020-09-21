@@ -24,6 +24,8 @@ class User
         if (!$token instanceof \ActiveCollab\SDK\TokenInterface) {
             print "Nem sikerült token-t kiállítani";
             die();
+        } else {
+            return $token;
         }
     }
 }
