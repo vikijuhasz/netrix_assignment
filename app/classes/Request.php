@@ -14,7 +14,13 @@ class Request
     {
         $client = new Client($token);
         $this->client = $client;
-    }    
+    }   
+    
+    public function getTasks()
+    {
+        $tasks = $this->client->get('projects/' . $this->project_number. '/tasks')->getJson();
+        return $tasks;
+    }
 }
 
 
