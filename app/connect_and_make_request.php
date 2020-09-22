@@ -16,9 +16,9 @@ $token = $user->connectToACAccount();
 $request = new Request($token);
 $tasks = $request->getTasks();
 
-$tasksForDisplay = Helper::makeTasksArrayForDisplay($tasks);
+$assignee_id = 6;
+$tasksForDisplay = Helper::makeTasksArrayForDisplayOfAssignee($tasks, $assignee_id);
 $_SESSION['tasks'] = $tasksForDisplay;
+
 header('Location: ../tasks.php');
-
-
 
