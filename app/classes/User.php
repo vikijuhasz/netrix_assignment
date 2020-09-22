@@ -3,6 +3,9 @@
 namespace App\Classes;
 
 use ActiveCollab\SDK\Authenticator\Cloud;
+use InvalidArgumentException;
+use ActiveCollab\SDK\Exceptions\Authentication;
+use ActiveCollab\SDK\Exceptions\ListAccounts;
 
 class User 
 {
@@ -17,16 +20,27 @@ class User
     
     public function connectToACAccount()
     {
-        // !!! Hibakezelés
-        $authenticator = new Cloud('Netrix', 'Netrix Assigment', $this->email, $this->password);
-        // !!! Hibakezelés
-        $token = $authenticator->issueToken(241126);
-        if (!$token instanceof \ActiveCollab\SDK\TokenInterface) {
-            print "Nem sikerült token-t kiállítani";
-            die();
-        } else {
-            return $token;
+        try {
+            $authenticator = new Cloud('Netrix', 'Netrix Assigment', $this->email, $this->password); 
+        }   
+        catch(InvalidArgumentException $e) {
+            return $_SESSION['error'] = 'Az email cím nem jó';
         }
+        // ez nem működik
+        catch(Authentication $e) {
+            return $_SESSION['error'] = 'Add meg az email címet és a jelszót';
+        }
+        //ez sem működik
+        catch(ListAccounts $e) {
+            return $_SESSION['error'] = 'Sikertelen bejelentkezés';
+        }
+        try {
+            $token = $authenticator->issueToken(241126);  
+        }
+        catch(InvalidArgumentException $e) {
+            return $_SESSION['error'] = 'A fiók száma helytelen';
+        } 
+        return $token;     
     }
 }
 
