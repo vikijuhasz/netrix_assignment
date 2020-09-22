@@ -17,7 +17,8 @@ $request = new Request($token);
 $tasks = $request->getTasks();
 
 $assignee_id = 6;
-$tasksForDisplay = Helper::makeTasksArrayForDisplayOfAssignee($tasks, $assignee_id);
+$noOfTasks = 20;
+$tasksForDisplay = Helper::makeTasksArrayForDisplayOfAssignee($tasks, $assignee_id, $noOfTasks);
 $_SESSION['tasks'] = $tasksForDisplay;
 
 header('Location: ../tasks.php');
