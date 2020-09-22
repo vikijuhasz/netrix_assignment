@@ -1,4 +1,3 @@
-- Clone or copy the project to your machine 
 - Run 'composer install' command
 - Open link 'netrix_assignment/index.php'
 - Follow instructions
