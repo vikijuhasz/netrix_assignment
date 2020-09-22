@@ -7,13 +7,15 @@ use App\Classes\User;
 use App\Classes\Request;
 use App\Classes\Helper;
 
-// !!! validation 
 $email = $_POST['email'];
 $password = $_POST['password'];
 $user = new User($email, $password);
-$token = $user->connectToACAccount();
+$tokenOrErrorMessage = $user->connectToACAccount();
+if (isset($_SESSION['error'])) {
+    header('Location: ../index.php');
+}
 
-$request = new Request($token);
+$request = new Request($tokenOrErrorMessage);
 $tasks = $request->getTasks();
 
 $assignee_id = 6;
