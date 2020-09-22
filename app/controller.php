@@ -4,7 +4,7 @@ session_start();
 require_once('../vendor/autoload.php');
 
 use App\Classes\User;
-use App\Classes\Request;
+use App\Classes\Task;
 use App\Classes\Helper;
 
 $email = $_POST['email'];
@@ -15,8 +15,8 @@ if (isset($_SESSION['error'])) {
     header('Location: ../index.php');
 }
 
-$request = new Request($tokenOrErrorMessage);
-$tasks = $request->getTasks();
+$task = new Task($tokenOrErrorMessage);
+$tasks = $task->getTasks();
 
 $assignee_id = 6;
 $noOfTasks = 20;

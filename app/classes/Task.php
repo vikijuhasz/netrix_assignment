@@ -4,10 +4,10 @@ namespace App\Classes;
 
 use ActiveCollab\SDK\Client;
 
-class Request 
+class Task 
 {
     private $client;
-    private $project_number = 34;
+    private $projectNumber = 34;
     
     public function __construct($token) 
     {
@@ -17,7 +17,7 @@ class Request
     
     public function getTasks()
     {
-        $tasks = $this->client->get('projects/' . $this->project_number. '/tasks')->getJson();
+        $tasks = $this->client->get('projects/' . $this->projectNumber. '/tasks')->getJson();
         return $tasks;
     }
 }
