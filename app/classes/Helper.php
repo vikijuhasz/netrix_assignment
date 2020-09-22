@@ -4,13 +4,15 @@ namespace App\Classes;
 
 class Helper
 {
-    public static function makeTasksArrayForDisplay($tasks)
+    public static function makeTasksArrayOfAssignee($tasks, $assignee_id)
     { 
         $tasksArr = [];
-        foreach ($tasks['tasks'] as $task) {          
-            $tasksArr[$task['updated_on']] = ['name' => $task['name'], 'body' => $task['body']];                            
+        foreach ($tasks['tasks'] as $task) { 
+            if ($task['assignee_id'] == $assignee_id) {
+                $tasksArr[$task['updated_on']] = ['name' => $task['name'], 'body' => $task['body']]; 
+            }                          
         } 
-
+        
         krsort($tasksArr);
         return $tasksArr;
     }
