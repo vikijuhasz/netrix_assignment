@@ -8,7 +8,7 @@ use ActiveCollab\SDK\Exceptions\AppException;
 class Request 
 {
     private $client;
-    private $project_number = 27;
+    private $project_number = 34;
     
     public function __construct($token) 
     {
