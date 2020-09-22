@@ -3,7 +3,6 @@
 namespace App\Classes;
 
 use ActiveCollab\SDK\Client;
-use ActiveCollab\SDK\Exceptions\AppException;
 
 class Request 
 {
