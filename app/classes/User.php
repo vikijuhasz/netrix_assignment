@@ -7,45 +7,35 @@ use InvalidArgumentException;
 use ActiveCollab\SDK\Exceptions\Authentication;
 use ActiveCollab\SDK\Exceptions\ListAccounts;
 
-class User 
+class User
 {
     private $email;
-    private $password;   
+    private $password;
     private $accountNum = 241126;
-    
+
     public function __construct($email, $password)
     {
         $this->email = $email;
         $this->password = $password;
     }
-    
+
     public function connectToACAccount()
     {
         try {
-            $authenticator = new Cloud('Netrix', 'Netrix Assigment', $this->email, $this->password); 
-        }   
-        catch(InvalidArgumentException $e) {
+            $authenticator = new Cloud('Netrix', 'Netrix Assigment', $this->email, $this->password);
+        } catch (InvalidArgumentException $e) {
             return $_SESSION['error'] = 'Az email cím nem jó';
-        }        
-        
+        }
+
         try {
-            $token = $authenticator->issueToken($this->accountNum);  
-        }
-        catch(ListAccounts $e) {
+            $token = $authenticator->issueToken($this->accountNum);
+        } catch (ListAccounts $e) {
             return $_SESSION['error'] = 'Sikertelen bejelentkezés, az email cím vagy a jelszó helytelen';
-        }
-        catch(Authentication $e) {
+        } catch (Authentication $e) {
             return $_SESSION['error'] = 'Add meg az email címet és a jelszót';
-        } 
-        catch(InvalidArgumentException $e) {
+        } catch (InvalidArgumentException $e) {
             return $_SESSION['error'] = 'A fiók száma helytelen';
-        } 
-        return $token;     
+        }
+        return $token;
     }
 }
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 require_once('../vendor/autoload.php');
@@ -24,4 +24,3 @@ $tasks = Helper::makeArrayOfTasksOfAssignee($tasksResponse, $assigneeId, $numOfT
 $_SESSION['tasks'] = $tasks;
 
 header('Location: ../tasks.php');
-
