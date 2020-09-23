@@ -10,7 +10,8 @@ use ActiveCollab\SDK\Exceptions\ListAccounts;
 class User 
 {
     private $email;
-    private $password;    
+    private $password;   
+    private $accountNum = 241126;
     
     public function __construct($email, $password)
     {
@@ -28,7 +29,7 @@ class User
         }        
         
         try {
-            $token = $authenticator->issueToken(241126);  
+            $token = $authenticator->issueToken($this->accountNum);  
         }
         catch(ListAccounts $e) {
             return $_SESSION['error'] = 'Sikertelen bejelentkezés, az email cím vagy a jelszó helytelen';
