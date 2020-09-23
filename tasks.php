@@ -2,8 +2,7 @@
     session_start(); 
     if(isset($_SESSION['tasks'])) {
         $tasks = $_SESSION['tasks'];
-    }
-    
+    }   
 ?>
 
 <!DOCTYPE html>
@@ -26,22 +25,24 @@
                     <th>Feladat leírása</th>
                     <th>Feladat utolsó módosításának dátuma</th>
                 </tr>
-            <?php foreach ($tasks as $updated_on => $task) :
-                $date = new DateTime("@$updated_on");
-                $timezone = new DateTimeZone('Europe/Budapest'); 
-                $date->setTimezone($timezone);                  
-                $updated_on = $date->format('Y-m-d H:i:s');
+            <?php 
+                foreach ($tasks as $updated_on => $task) :
+                    $date = new DateTime("@$updated_on");
+                    $timezone = new DateTimeZone('Europe/Budapest'); 
+                    $date->setTimezone($timezone);                  
+                    $updated_on = $date->format('Y-m-d H:i:s');
             ?>
                 <tr>
                     <td><?=$task['name']?></td>
                     <td><?=$task['body']?></td>
                     <td><?=$updated_on?></td>
                 </tr>
-            <?php endforeach; 
-        else :
-            echo 'A feladatokat nem lehet megjeleníteni';
-        endif;
-        ?>
+            <?php 
+                endforeach; 
+            else :
+                echo 'A feladatokat nem lehet megjeleníteni';
+            endif;
+            ?>
             </table>
     </div>
     

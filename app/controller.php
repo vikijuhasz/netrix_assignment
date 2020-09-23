@@ -10,18 +10,18 @@ use App\Classes\Helper;
 $email = $_POST['email'];
 $password = $_POST['password'];
 $user = new User($email, $password);
-$tokenOrErrorMessage = $user->connectToACAccount();
+$result = $user->connectToACAccount();
 if (isset($_SESSION['error'])) {
     header('Location: ../index.php');
 }
 
-$task = new Task($tokenOrErrorMessage);
-$tasks = $task->getTasks();
+$task = new Task($result);
+$tasksResponse = $task->getTasks();
 
-$assignee_id = 6;
-$noOfTasks = 20;
-$tasksForDisplay = Helper::makeTasksArrayForDisplayOfAssignee($tasks, $assignee_id, $noOfTasks);
-$_SESSION['tasks'] = $tasksForDisplay;
+$assigneeId = 6;
+$numOfTasks = 20;
+$tasks = Helper::makeArrayOfTasksOfAssignee($tasksResponse, $assigneeId, $numOfTasks);
+$_SESSION['tasks'] = $tasks;
 
 header('Location: ../tasks.php');
 
